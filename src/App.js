@@ -10,6 +10,7 @@ import hljs from 'highlight.js';
 import 'tui-color-picker/dist/tui-color-picker.css';
 import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
+import uml from '@toast-ui/editor-plugin-uml';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         height='600px'
         initialEditType='markdown'
         useCommandShortcut={true}
-        plugins={[chart, [codeSyntaxHightlight, { hljs }], colorSyntax, tableMergedCell]}
+        plugins={[chart, [codeSyntaxHightlight, { hljs }], colorSyntax, tableMergedCell, uml]}
       />
     </div>
   );
