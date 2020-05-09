@@ -7,6 +7,8 @@ import chart from '@toast-ui/editor-plugin-chart';
 import 'highlight.js/styles/github.css';
 import codeSyntaxHightlight from '@toast-ui/editor-plugin-code-syntax-highlight';
 import hljs from 'highlight.js';
+import 'tui-color-picker/dist/tui-color-picker.css';
+import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
         height='600px'
         initialEditType='markdown'
         useCommandShortcut={true}
-        plugins={[chart, [codeSyntaxHightlight, { hljs }]]}
+        plugins={[chart, [codeSyntaxHightlight, { hljs }], colorSyntax]}
       />
     </div>
   );
