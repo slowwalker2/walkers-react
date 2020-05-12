@@ -1,23 +1,22 @@
 import React from 'react';
 import SignIn from '../components/SignIn'
-import Header from '../components/Header';
-
 export default function SignInPage() {
   return (
-  <div className="">
-    <Header></Header>
-    <div class="max-w-sm rounded overflow-hidden shadow-lg mx-auto my-10 bg-white">
-      <img class="w-full" src="https://tailwindcss.com/img/card-top.jpg" alt="Sunset in the mountains"/>
-      <div class="px-6 py-4">
-        <div class="font-bold text-xl mb-2">로그인</div>
-        <p class="text-gray-700 text-base">
-          아직 회원이 아니면 <u>여기</u>를 클릭하세요.
-        </p>
-      </div>
-      <div class="px-6 py-4">
-        <SignIn></SignIn>
-      </div>
-    </div>        
+    <div className="flex items-center h-full">
+    <div className="w-full h-full" style={{'background-image': 'url("https://patterncooler.com/gen/downloaded/jpg/_s_a12Cb104c12Cd104e0f0g64hF4D9CA23937F207A80275D76294468262E55iE9j39k64l1F4m1F4.jpg")', 
+    'opacity': '0.3', 'position':'absolute', 'zIndex':'-1'}}></div>
+
+    <div className="flex bg-white mx-auto shadow-lg w-11/12 sm:w-9/12 md:w-6/12 lg:w-1/3">
+      <div class="text-center rounded overflow-hidden py-10 w-full">
+        <div class="px-6">
+          <div class="text-xl mb-2 text-left">시작하기</div>
+        </div>
+        <div class="px-6">
+          <SignIn></SignIn>
+        </div>
+      </div>          
+    </div>
+    
   </div>
 );
 }
