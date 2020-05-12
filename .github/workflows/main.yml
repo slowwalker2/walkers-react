@@ -2,7 +2,9 @@ name: Upload to S3
 
 on:
   push:
-    branches: [ master, sandbox ]
+    branches: [ master ]
+  pull_request:
+    branches: [ sandbox ]
 
 jobs:
   deploy:
