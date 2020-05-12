@@ -5,17 +5,15 @@ import Header from './components/Header';
 function App() {
   return (
     <Router>
-      <div>
-        <Header></Header>
-        <Switch>
-          <Route path='/signin'>
-            <SignInPage />
-          </Route>
-          <Route path='/'>
-            <div></div>
-          </Route>
-        </Switch>
-      </div>
+      <Header></Header>
+      <Switch>
+        <Route path='/signin'>
+          <SignInPage />
+        </Route>
+        <Route path='/'>
+          <div></div>
+        </Route>
+      </Switch>
     </Router>
   );
 }
