@@ -1,7 +1,13 @@
 import React from 'react';
-
+import SignIn from './components/SignIn';
+import Header from './components/Header';
 function App() {
-  return <div className='App'></div>;
+  return (
+    <div>
+      <Header></Header>
+      <SignIn></SignIn>
+    </div>
+  );
 }
 
 export default App;
