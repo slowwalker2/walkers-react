@@ -1,21 +1,36 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SignInPage from './pages/SignInPage';
+import KeepPage from './pages/KeepPage';
 import ArticleFormPage from './pages/ArticleFormPage';
+import LinkArticleCardsPage from './pages/LinkArticleCardsPage';
+import LinkArticleView from './pages/LinkArticleViewPage';
 import Header from './components/Header';
 function App() {
   return (
     <Router>
       <Header></Header>
       <Switch>
-        <Route path='/signin'>
+        <Route exact path='/signin'>
           <SignInPage />
         </Route>
-        <Route path='/new'>
+        <Route exact path='/keep'>
+          <KeepPage></KeepPage>
+        </Route>
+        <Route exact path='/read'>
+          <LinkArticleCardsPage></LinkArticleCardsPage>
+        </Route>
+        <Route exact path='/new'>
           <ArticleFormPage></ArticleFormPage>
         </Route>
+        <Route exact path='/links/:id'>
+          <LinkArticleView></LinkArticleView>
+        </Route>
+        <Route exact path='/trend'>
+          <LinkArticleCardsPage></LinkArticleCardsPage>
+        </Route>
         <Route path='/'>
-          <div></div>
+          <div>1</div>
         </Route>
       </Switch>
     </Router>
