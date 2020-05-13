@@ -35,26 +35,31 @@ export default function HeaderComponent() {
         className='w-full block flex-grow sm:flex sm:items-center sm:w-auto sm:block hidden'>
         <div className='text-sm sm:flex-grow'>
           <Link
-            to='#'
+            to='/keep'
             className='block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4'>
-            Docs
+            Keep
+          </Link>
+          <Link
+            to='/read'
+            className='block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4'>
+            Read
+          </Link>
+          <Link
+            to='/trend'
+            className='block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4'>
+            Trend
           </Link>
           <Link
             to='/new'
-            className='block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white mr-4'>
-            New
-          </Link>
-          <Link
-            to='#'
             className='block mt-4 sm:inline-block sm:mt-0 text-teal-200 hover:text-white'>
-            Blog
+            Post
           </Link>
         </div>
         <div>
           <Link
             to='/signin'
             className='inline-block text-sm px-4 py-2 mx-2 leading-none border rounded border-transparent text-white bg-blue-800 hover:bg-yellow-700 mt-4 sm:mt-0'>
-            로그인
+            Sign in
           </Link>
         </div>
       </div>

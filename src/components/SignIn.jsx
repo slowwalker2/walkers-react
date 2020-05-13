@@ -7,7 +7,7 @@ export default function SignInComponent() {
         <div class="md:items-center mb-6 w-full">
           <div className="w-full">
             <label class="block text-left mb-1 md:mb-0 pr-4" for="inline-full-name">
-              이메일
+              Email
             </label>
           </div>
           <div>
@@ -17,7 +17,7 @@ export default function SignInComponent() {
         <div class="md:items-center mb-6">
           <div>
             <label class="block text-left right mb-1 md:mb-0 pr-4" for="inline-username">
-              비밀번호
+              Password
             </label>
           </div>
           <div>
@@ -27,15 +27,15 @@ export default function SignInComponent() {
         <div class="sm:flex justify-center">
           <div class="text-center">
             <button class="shadow bg-teal-700 hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white py-2 px-4 rounded" type="button">
-              회원가입
+              Sign up
             </button>
           </div>
           <div class="text-center my-2 mx-4">
-            또는
+            or
           </div>
           <div class="text-center">
             <button class="shadow bg-blue-800 hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white py-2 px-4 rounded" type="button">
-              로그인
+              Sign in
             </button>
           </div>
         </div>
