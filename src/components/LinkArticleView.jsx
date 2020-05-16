@@ -24,7 +24,7 @@ export default function LinkArticleViewComponent({ data }) {
             Member only
           </p>
           <div class='text-gray-900 font-bold text-xl mb-2'>
-            <a href={data.url} target='_blank'>
+            <a href={data.url} target='_blank' rel='noopener noreferrer'>
               {data.title}
             </a>
           </div>
