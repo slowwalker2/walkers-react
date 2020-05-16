@@ -3,7 +3,7 @@ import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
 
 export default function KeepPage() {
-  const { addToast, _removeToast, _removeAllToasts, _updateToast, _toastStack } = useToasts();
+  const { addToast } = useToasts();
   const [link, setLink] = useState('');
 
   useEffect(() => {}, []);
