@@ -3,7 +3,7 @@ import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
 
 export default function KeepPage() {
-  const { addToast, removeToast, removeAllToasts, updateToast, toastStack } = useToasts();
+  const { addToast } = useToasts();
   const [link, setLink] = useState('');
 
   useEffect(() => {}, []);
@@ -14,10 +14,10 @@ export default function KeepPage() {
         link: { url: document.getElementById('url').value },
       })
       .then((results) => {
-        addToast('Successfully kept.', {
+        addToast('Saved.', {
           appearance: 'success',
-          transitionDuration: 600,
-          autoDismissTimeout: 3000,
+          transitionDuration: 0,
+          autoDismissTimeout: 2000,
           autoDismiss: true,
         });
         setLink('');

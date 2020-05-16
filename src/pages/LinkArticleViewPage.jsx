@@ -4,20 +4,23 @@ import LinkArticleView from '../components/LinkArticleView';
 import { useRouteMatch } from 'react-router-dom';
 export default function ArticleViewPage() {
   const [link, setLink] = useState(null);
-  const match = useRouteMatch({
+  const {
+    params: { id },
+  } = useRouteMatch({
     path: '/links/:id',
   });
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_JETS_URI}/links/${match.params.id}`, {})
+      .get(`${process.env.REACT_APP_JETS_URI}/links/${id}`, {})
       .then((results) => {
         setLink(results.data);
       })
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [id]);
+
   return (
     <div className='flex items-center'>
       <div className='flex bg-white mx-auto w-11/12 sm:w-9/12 md:w-8/12 lg:w-2/3'>
