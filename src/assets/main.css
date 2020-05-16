@@ -14343,6 +14343,13 @@ video {
   transition-delay: 1000ms;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  font-family: 'Helvetica Neue', 'Segoe UI', Arial, sans-serif;
+}
+
 @media (min-width: 640px) {
   .sm\:space-y-0 > :not(template) ~ :not(template) {
     --space-y-reverse: 0;
