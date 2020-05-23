@@ -7,7 +7,7 @@ export default function LinkArticleCardsComponent() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_JETS_URI}/links`, {})
+      .get(`${process.env.REACT_APP_JETS_URI}/user_links`, {})
       .then((results) => {
         setLinks(results.data);
         console.log(results.data);

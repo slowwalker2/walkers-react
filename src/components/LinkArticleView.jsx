@@ -5,7 +5,7 @@ export default function LinkArticleViewComponent({ data }) {
       <div
         class='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden border border-gray-400'
         style={{
-          'background-image': "url('" + data.image + "')",
+          'background-image': "url('" + data.userdata.image + "')",
           opacity: '0.9',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
@@ -24,11 +24,11 @@ export default function LinkArticleViewComponent({ data }) {
             Member only
           </p>
           <div class='text-gray-900 font-bold text-xl mb-2'>
-            <a href={data.url} target='_blank' rel='noopener noreferrer'>
-              {data.title}
+            <a href={data.userdata.site_url} target='_blank' rel='noopener noreferrer'>
+              {data.userdata.title}
             </a>
           </div>
-          <p class='text-gray-700 text-base'>{data.description}</p>
+          <p class='text-gray-700 text-base'>{data.userdata.description}</p>
         </div>
         <div class='flex items-center'>
           <img

@@ -10,8 +10,8 @@ export default function KeepPage() {
 
   const addLink = () => {
     axios
-      .post(`${process.env.REACT_APP_JETS_URI}/links`, {
-        link: { url: document.getElementById('url').value },
+      .post(`${process.env.REACT_APP_JETS_URI}/user_links`, {
+        user_link: { url: document.getElementById('url').value },
       })
       .then((results) => {
         addToast('Saved.', {
