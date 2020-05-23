@@ -6,7 +6,7 @@ export default function LinkArticleCardComponent({ data }) {
       <div
         class='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden border border-gray-400'
         style={{
-          'background-image': "url('" + data.image + "')",
+          'background-image': "url('" + data.userdata.image + "')",
           opacity: '0.9',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
@@ -25,9 +25,9 @@ export default function LinkArticleCardComponent({ data }) {
             Member only
           </p>
           <div class='text-gray-900 font-bold text-xl mb-2'>
-            <Link to={`/links/${data.id}`}>{data.title}</Link>
+            <Link to={`/links/${data.id}`}>{data.userdata.title}</Link>
           </div>
-          <p class='text-gray-700 text-base'>{data.description}</p>
+          <p class='text-gray-700 text-base'>{data.userdata.description}</p>
         </div>
         <div class='flex items-center'>
           <img

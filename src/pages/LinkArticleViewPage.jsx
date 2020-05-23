@@ -12,7 +12,7 @@ export default function ArticleViewPage() {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_JETS_URI}/links/${id}`, {})
+      .get(`${process.env.REACT_APP_JETS_URI}/user_links/${id}`, {})
       .then((results) => {
         setLink(results.data);
       })
