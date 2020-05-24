@@ -10,7 +10,6 @@ export default function LinkArticleCardsComponent() {
       .get(`${process.env.REACT_APP_JETS_URI}/user_links`, {})
       .then((results) => {
         setLinks(results.data);
-        console.log(results.data);
       })
       .catch((e) => {
         console.log(e);
