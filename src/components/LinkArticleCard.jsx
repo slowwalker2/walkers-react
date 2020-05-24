@@ -1,12 +1,14 @@
 import React from 'react';
+import StarRatingComponent from 'react-star-rating-component';
 import { Link } from 'react-router-dom';
+
 export default function LinkArticleCardComponent({ data }) {
   return (
     <div class='max-w-sm w-full lg:max-w-full lg:flex'>
       <div
         class='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden border border-gray-400'
         style={{
-          'background-image': "url('" + data.image + "')",
+          'background-image': "url('" + data.userdata.image + "')",
           opacity: '0.9',
           backgroundSize: 'contain',
           backgroundRepeat: 'no-repeat',
@@ -15,19 +17,10 @@ export default function LinkArticleCardComponent({ data }) {
         title='Woman holding a mug'></div>
       <div class='border-r border-b border-l border-gray-400 w-full lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal z-10'>
         <div class='mb-8'>
-          <p class='text-sm text-gray-600 flex items-center'>
-            <svg
-              class='fill-current text-gray-500 w-3 h-3 mr-2'
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 20 20'>
-              <path d='M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z' />
-            </svg>
-            Member only
-          </p>
           <div class='text-gray-900 font-bold text-xl mb-2'>
-            <Link to={`/links/${data.id}`}>{data.title}</Link>
+            <Link to={`/links/${data.id}`}>{data.userdata.title}</Link>
           </div>
-          <p class='text-gray-700 text-base'>{data.description}</p>
+          <p class='text-gray-700 text-base'>{data.userdata.description}</p>
         </div>
         <div class='flex items-center'>
           <img
@@ -40,6 +33,19 @@ export default function LinkArticleCardComponent({ data }) {
             <p class='text-gray-600'>Aug 18</p>
           </div>
         </div>
+        {data.rating && data.rating.length >= 1 ? (
+          <div class='flex items-right'>
+            <div class='text-sm'>
+              <StarRatingComponent
+                name='rate1'
+                starCount={5}
+                value={data.rating[0].value}
+                emptyStarColor={'#ccc'}
+                editing={false}
+              />
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

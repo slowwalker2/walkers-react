@@ -1,7 +1,7 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { Editor } from '@toast-ui/react-editor';
+import { Viewer } from '@toast-ui/react-editor';
 import 'tui-chart/dist/tui-chart.css';
 import chart from '@toast-ui/editor-plugin-chart';
 import 'highlight.js/styles/github.css';
@@ -12,18 +12,14 @@ import colorSyntax from '@toast-ui/editor-plugin-color-syntax';
 import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
 import uml from '@toast-ui/editor-plugin-uml';
 
-function EditorComponent(props) {
-  const editorRef = useRef();
+function EditorViewerComponent(props) {
+  useEffect(() => {
+    console.log(props.initialValue);
+  }, []);
 
-  const clickSubmit = () => {
-    props.clickSubmit(editorRef.current.getInstance().getMarkdown());
-  };
   return (
     <>
-      <Editor
-        height='300px'
-        initialEditType='markdown'
-        ref={editorRef}
+      <Viewer
         {...props}
         plugins={[
           chart,
@@ -31,17 +27,9 @@ function EditorComponent(props) {
           colorSyntax,
           tableMergedCell,
           uml,
-        ]}></Editor>
-      <div class='flex'>
-        <button
-          class='shadow bg-blue-800 hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white py-2 px-4 rounded mx-auto mt-2'
-          type='button'
-          onClick={() => clickSubmit()}>
-          저장
-        </button>
-      </div>
+        ]}></Viewer>
     </>
   );
 }
 
-export default EditorComponent;
+export default EditorViewerComponent;

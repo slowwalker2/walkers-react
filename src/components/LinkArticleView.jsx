@@ -1,44 +1,117 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import StarRatingComponent from 'react-star-rating-component';
+import { useToasts } from 'react-toast-notifications';
+import axios from 'axios';
+import { FaPenSquare } from 'react-icons/fa';
+import Note from '../components/Editor';
+import NoteViewer from './EditorViewer';
+
 export default function LinkArticleViewComponent({ data }) {
+  const { addToast } = useToasts();
+  const [rating, setRating] = useState(null);
+  const [note, setNote] = useState(null);
+  const [noteEditMode, setNoteEditMode] = useState(false);
+
+  useEffect(() => {
+    if (data.rating && data.rating.length >= 1) {
+      setRating(data.rating[0].value);
+    }
+
+    if (data.note) {
+      setNote(data.note.body);
+    }
+  }, []);
+
+  const onStarClick = (nextValue) => {
+    axios
+      .post(`${process.env.REACT_APP_JETS_URI}/user_links/${data.id}/rating`, {
+        user_link: { value: nextValue },
+      })
+      .then((results) => {
+        addToast('Submitted.', {
+          appearance: 'success',
+          transitionDuration: 0,
+          autoDismissTimeout: 2000,
+          autoDismiss: true,
+        });
+        setRating(nextValue);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
+  const onNoteUpdateClick = (body) => {
+    axios
+      .post(`${process.env.REACT_APP_JETS_URI}/user_links/${data.id}/note`, {
+        user_link: { note: body },
+      })
+      .then((results) => {
+        addToast('Submitted.', {
+          appearance: 'success',
+          transitionDuration: 0,
+          autoDismissTimeout: 2000,
+          autoDismiss: true,
+        });
+        setNote(body);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   return (
-    <div class='max-w-sm w-full lg:max-w-full lg:flex'>
-      <div
-        class='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden border border-gray-400'
-        style={{
-          'background-image': "url('" + data.image + "')",
-          opacity: '0.9',
-          backgroundSize: 'contain',
-          backgroundRepeat: 'no-repeat',
-          backgroundPosition: 'center center',
-        }}
-        title='Woman holding a mug'></div>
-      <div class='border-r border-b border-l border-gray-400 w-full lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal z-10'>
-        <div class='mb-8'>
-          <p class='text-sm text-gray-600 flex items-center'>
-            <svg
-              class='fill-current text-gray-500 w-3 h-3 mr-2'
-              xmlns='http://www.w3.org/2000/svg'
-              viewBox='0 0 20 20'>
-              <path d='M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z' />
-            </svg>
-            Member only
-          </p>
-          <div class='text-gray-900 font-bold text-xl mb-2'>
-            <a href={data.url} target='_blank' rel='noopener noreferrer'>
-              {data.title}
-            </a>
+    <div>
+      <div class='max-w-sm w-full lg:max-w-full lg:flex'>
+        <div
+          class='h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden border border-gray-400'
+          style={{
+            'background-image': "url('" + data.userdata.image + "')",
+            opacity: '0.9',
+            backgroundSize: 'contain',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center center',
+          }}
+          title='Woman holding a mug'></div>
+        <div class='border-r border-b border-l border-gray-400 w-full lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal z-10'>
+          <div class='mb-8'>
+            <div class='text-gray-900 font-bold text-xl mb-2'>
+              <a href={data.userdata.site_url} target='_blank' rel='noopener noreferrer'>
+                {data.userdata.title}
+              </a>
+            </div>
+            <p class='text-gray-700 text-base'>{data.userdata.description}</p>
           </div>
-          <p class='text-gray-700 text-base'>{data.description}</p>
         </div>
-        <div class='flex items-center'>
-          <img
-            class='w-10 h-10 rounded-full mr-4'
-            src='https://tailwindcss.com/img/jonathan.jpg'
-            alt='Avatar of Jonathan Reinink'
-          />
-          <div class='text-sm'>
-            <p class='text-gray-900 leading-none'>Jonathan Reinink</p>
-            <p class='text-gray-600'>Aug 18</p>
+      </div>
+
+      <div class='max-w-sm w-full lg:max-w-full lg:flex mt-1'>
+        <div class='border-r border-b border-l border-gray-400 w-full lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 justify-between leading-normal z-10'>
+          <div class='flex flex-col'>
+            <StarRatingComponent
+              name='rate1'
+              starCount={5}
+              value={rating}
+              emptyStarColor={'#ccc'}
+              onStarClick={(nextValue) => onStarClick(nextValue)}
+            />
+            <div class=''>
+              <FaPenSquare
+                class='cursor-pointer'
+                onClick={() => {
+                  setNoteEditMode(!noteEditMode);
+                }}
+              />
+            </div>
+          </div>
+          <div>
+            {noteEditMode == true ? (
+              <Note initialValue={note} clickSubmit={(body) => onNoteUpdateClick(body)}></Note>
+            ) : (
+              <>
+                <NoteViewer initialValue={note}></NoteViewer>
+              </>
+            )}
           </div>
         </div>
       </div>
