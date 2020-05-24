@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Viewer } from '@toast-ui/react-editor';
@@ -13,22 +13,17 @@ import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
 import uml from '@toast-ui/editor-plugin-uml';
 
 function EditorViewerComponent(props) {
-  useEffect(() => {
-    console.log(props.initialValue);
-  }, []);
-
   return (
-    <>
-      <Viewer
-        {...props}
-        plugins={[
-          chart,
-          [codeSyntaxHightlight, { hljs }],
-          colorSyntax,
-          tableMergedCell,
-          uml,
-        ]}></Viewer>
-    </>
+    <Viewer
+      id='viewer'
+      {...props}
+      plugins={[
+        chart,
+        [codeSyntaxHightlight, { hljs }],
+        colorSyntax,
+        tableMergedCell,
+        uml,
+      ]}></Viewer>
   );
 }
 

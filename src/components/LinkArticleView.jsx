@@ -5,22 +5,26 @@ import axios from 'axios';
 import { FaPenSquare } from 'react-icons/fa';
 import Note from '../components/Editor';
 import NoteViewer from './EditorViewer';
+import { Viewer } from '@toast-ui/react-editor';
 
 export default function LinkArticleViewComponent({ data }) {
   const { addToast } = useToasts();
   const [rating, setRating] = useState(null);
-  const [note, setNote] = useState(null);
+  const [note, setNote] = useState('');
   const [noteEditMode, setNoteEditMode] = useState(false);
 
   useEffect(() => {
     if (data.rating && data.rating.length >= 1) {
       setRating(data.rating[0].value);
     }
+  }, [data.rating]);
 
+  useEffect(() => {
     if (data.note) {
+      console.log('aaa', data.note.body);
       setNote(data.note.body);
     }
-  }, []);
+  }, [data.note]);
 
   const onStarClick = (nextValue) => {
     axios
@@ -105,12 +109,10 @@ export default function LinkArticleViewComponent({ data }) {
             </div>
           </div>
           <div>
-            {noteEditMode == true ? (
+            {noteEditMode ? (
               <Note initialValue={note} clickSubmit={(body) => onNoteUpdateClick(body)}></Note>
             ) : (
-              <>
-                <NoteViewer initialValue={note}></NoteViewer>
-              </>
+              <NoteViewer initialValue={note}></NoteViewer>
             )}
           </div>
         </div>
