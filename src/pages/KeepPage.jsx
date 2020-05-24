@@ -27,7 +27,7 @@ export default function KeepPage() {
   };
 
   const invalid = () => {
-    return link == null || link.trim().length == 0;
+    return link === null || link.trim().length === 0;
   };
 
   const successPopup = (message) => {
@@ -77,7 +77,7 @@ export default function KeepPage() {
                     setLink(e.target.value);
                   }}
                   onKeyUp={(e) => {
-                    if (e.keyCode == 13) {
+                    if (e.keyCode === 13) {
                       addLink();
                     }
                   }}

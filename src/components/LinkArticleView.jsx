@@ -5,7 +5,6 @@ import axios from 'axios';
 import { FaPenSquare } from 'react-icons/fa';
 import Note from '../components/Editor';
 import NoteViewer from './EditorViewer';
-import { Viewer } from '@toast-ui/react-editor';
 
 export default function LinkArticleViewComponent({ data }) {
   const { addToast } = useToasts();
