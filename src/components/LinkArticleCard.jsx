@@ -1,5 +1,5 @@
 import React from 'react';
-import StarRatingComponent from 'react-star-rating-component';
+import { StarRating } from './starRating';
 import { Link } from 'react-router-dom';
 
 export default function LinkArticleCardComponent({ data }) {
@@ -36,13 +36,7 @@ export default function LinkArticleCardComponent({ data }) {
         {data.rating && data.rating.length >= 1 ? (
           <div class='flex items-right'>
             <div class='text-sm'>
-              <StarRatingComponent
-                name='rate1'
-                starCount={5}
-                value={data.rating[0].value}
-                emptyStarColor={'#ccc'}
-                editing={false}
-              />
+              <StarRating value={data.rating[0].value} editing={false} />
             </div>
           </div>
         ) : null}

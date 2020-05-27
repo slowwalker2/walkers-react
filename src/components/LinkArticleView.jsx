@@ -1,16 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import StarRatingComponent from 'react-star-rating-component';
+import React, { useState, useEffect, useRef } from 'react';
+import { StarRating } from './starRating';
 import { useToasts } from 'react-toast-notifications';
 import axios from 'axios';
 import { FaPenSquare } from 'react-icons/fa';
 import Note from '../components/Editor';
 import NoteViewer from './EditorViewer';
+import { BlueButton } from './button';
 
 export default function LinkArticleViewComponent({ data }) {
   const { addToast } = useToasts();
   const [rating, setRating] = useState(null);
   const [note, setNote] = useState('');
   const [noteEditMode, setNoteEditMode] = useState(false);
+  const editorRef = useRef();
 
   useEffect(() => {
     if (data.rating && data.rating.length >= 1) {
@@ -44,7 +46,8 @@ export default function LinkArticleViewComponent({ data }) {
       });
   };
 
-  const onNoteUpdateClick = (body) => {
+  const updateNote = () => {
+    const body = editorRef.current.getInstance().getMarkdown();
     axios
       .post(`${process.env.REACT_APP_JETS_URI}/user_links/${data.id}/note`, {
         user_link: { note: body },
@@ -91,13 +94,7 @@ export default function LinkArticleViewComponent({ data }) {
       <div class='max-w-sm w-full lg:max-w-full lg:flex mt-1'>
         <div class='border-r border-b border-l border-gray-400 w-full lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 justify-between leading-normal z-10'>
           <div class='flex flex-col'>
-            <StarRatingComponent
-              name='rate1'
-              starCount={5}
-              value={rating}
-              emptyStarColor={'#ccc'}
-              onStarClick={(nextValue) => onStarClick(nextValue)}
-            />
+            <StarRating value={rating} onClickEvent={(nextValue) => onStarClick(nextValue)} />
             <div class=''>
               <FaPenSquare
                 class='cursor-pointer'
@@ -109,7 +106,12 @@ export default function LinkArticleViewComponent({ data }) {
           </div>
           <div>
             {noteEditMode ? (
-              <Note initialValue={note} clickSubmit={(body) => onNoteUpdateClick(body)}></Note>
+              <div>
+                <Note initialValue={note} editorRef={editorRef}></Note>
+                <div class='flex'>
+                  <BlueButton btnClick={() => updateNote()} text='저장' className='mt-2' />
+                </div>
+              </div>
             ) : (
               <NoteViewer initialValue={note}></NoteViewer>
             )}

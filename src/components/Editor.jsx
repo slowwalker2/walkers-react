@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import 'codemirror/lib/codemirror.css';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
@@ -13,34 +13,14 @@ import tableMergedCell from '@toast-ui/editor-plugin-table-merged-cell';
 import uml from '@toast-ui/editor-plugin-uml';
 
 function EditorComponent(props) {
-  const editorRef = useRef();
-
-  const clickSubmit = () => {
-    props.clickSubmit(editorRef.current.getInstance().getMarkdown());
-  };
   return (
-    <>
-      <Editor
-        height='300px'
-        initialEditType='markdown'
-        ref={editorRef}
-        {...props}
-        plugins={[
-          chart,
-          [codeSyntaxHightlight, { hljs }],
-          colorSyntax,
-          tableMergedCell,
-          uml,
-        ]}></Editor>
-      <div class='flex'>
-        <button
-          class='shadow bg-blue-800 hover:bg-yellow-700 focus:shadow-outline focus:outline-none text-white py-2 px-4 rounded mx-auto mt-2'
-          type='button'
-          onClick={() => clickSubmit()}>
-          저장
-        </button>
-      </div>
-    </>
+    <Editor
+      height='300px'
+      initialEditType='markdown'
+      ref={props.editorRef}
+      {...props}
+      plugins={[chart, [codeSyntaxHightlight, { hljs }], colorSyntax, tableMergedCell, uml]}
+    />
   );
 }
 

@@ -15,15 +15,9 @@ import uml from '@toast-ui/editor-plugin-uml';
 function EditorViewerComponent(props) {
   return (
     <Viewer
-      id='viewer'
       {...props}
-      plugins={[
-        chart,
-        [codeSyntaxHightlight, { hljs }],
-        colorSyntax,
-        tableMergedCell,
-        uml,
-      ]}></Viewer>
+      plugins={[chart, [codeSyntaxHightlight, { hljs }], colorSyntax, tableMergedCell, uml]}
+    />
   );
 }
 
