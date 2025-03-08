@@ -12,7 +12,7 @@
     "@toast-ui/editor-plugin-table-merged-cell": "^1.0.0",
     "@toast-ui/editor-plugin-uml": "^1.0.0",
     "@toast-ui/react-editor": "^2.1.1",
-    "axios": "^0.19.2",
+    "axios": "^1.8.2",
     "dotenv": "^8.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
